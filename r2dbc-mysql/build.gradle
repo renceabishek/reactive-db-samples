@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.9.BUILD-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.data'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	//implementation 'org.springframework.boot:spring-data-jpa'
+
+	//implementation 'com.microsoft.sqlserver:sqljdbc4'
+	compile('com.microsoft.sqlserver:mssql-jdbc')
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	runtime 'mysql:mysql-connector-java'
+	runtime 'dev.miku:r2dbc-mysql'
+	//runtime 'com.h2database:h2'
+
+	//runtime 'io.r2dbc:r2dbc-h2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'io.r2dbc:r2dbc-h2'
+
+}
+
+test {
+	useJUnitPlatform()
+}
